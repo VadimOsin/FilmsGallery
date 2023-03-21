@@ -14,4 +14,4 @@ const start = async () => {
         console.log(e)
     }
 }
-start().then(r => console.log(r))
+start()
