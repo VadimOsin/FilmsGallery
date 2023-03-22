@@ -1,0 +1,27 @@
+add comments - post
+http://localhost:5000/api/comments/
+{
+    "title":"title",
+    "text":"text",
+"likes":0,
+"user_id":1
+}
+
+getAll
+http://localhost:5000/api/comments/all
+
+getOneByID
+http://localhost:5000/api/comments?id=1
+
+deleteComment
+http://localhost:5000/api/comments?id=2
+
+updateComments
+http://localhost:5000/api/comments/
+{
+    "id":3,
+    "title":"title",
+    "text":"text",
+"likes":3,
+"user_id":1
+}

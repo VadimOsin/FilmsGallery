@@ -1,12 +1,12 @@
 const Router = require('express')
 const router = new Router()
 const userRoutes = require('./userRoutes')
-const filmRouter = require('./filmRouter')
 const commentsRouter = require('./commentsRouter')
+const filmRouter = require('./filmRouter')
 
-router.use('/user', userRoutes())
-router.use('/comments', filmRouter())
-router.use('/film', commentsRouter())
 
+router.use('/comments', commentsRouter)
+router.use('/film', filmRouter)
+router.use('/user', userRoutes)
 
 module.exports = router
