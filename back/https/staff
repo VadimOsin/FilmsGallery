@@ -1,0 +1,14 @@
+http://localhost:5000/api/staff?id=1 delete
+
+put and post http://localhost:5000/api/staff
+{
+    "id": 665379,
+    "nameRu": "Винс Гиллиган",
+    "nameEn": "Vince Gilligan",
+    "description": "Neoo",
+    "posterUrl": "https://st.kp.yandex.net/images/actor/66539.jpg",
+    "professionText": "Режиссеры",
+    "professionKey": "DIRECTOR"
+}
+
+http://localhost:5000/api/staff/665379
