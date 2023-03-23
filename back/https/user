@@ -1,0 +1,20 @@
+reg post
+http://localhost:5000/api/user/registration
+
+{
+    "email":"aaa@gmail.com",
+    "password":"12345678",
+    "role":"USER"
+}
+
+login post
+http://localhost:5000/api/user/login
+{
+    "email":"aa@gmail.com",
+    "password":"12345678"
+}
+
+
+user check get
+http://localhost:5000/api/user/auth
+Authorization Bearer token vsnvsdnhgsjgdgs
