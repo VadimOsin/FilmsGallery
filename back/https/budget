@@ -1,0 +1,23 @@
+delete
+http://localhost:5000/api/budget?id=1
+
+update
+http://localhost:5000/api/budget
+{
+    "id":1,
+    "type": "BUDGET",
+    "amount": 64000000,
+    "symbol": "$"
+}
+
+get
+http://localhost:5000/api/budget/1
+
+new
+http://localhost:5000/api/budget
+{
+    "id":1,
+    "type": "BUDGET",
+    "amount": 64000000,
+    "symbol": "$"
+}
