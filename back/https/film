@@ -1,0 +1,57 @@
+add film post
+http://localhost:5000/api/film
+{
+  "id": 301,
+  "nameRu": "Матрица",
+  "nameEn": "The Matrix",
+  "nameOriginal": "The Matrix",
+  "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/301.jpg",
+  "ratingKinopoisk": 8.5,
+  "year": 1999,
+  "filmLength": 136,
+  "description": "Жизнь Томаса Андерсона разделена на две части:",
+  "type": "FILM",
+  "ratingAgeLimits": "age16",
+  "genre":1,
+  "countries": [
+       "США",
+       "Великобритания",
+       "СНГ"
+
+  ],
+  "genres": [
+      "фантастика"
+  ]
+}
+
+getAll
+http://localhost:5000/api/film/all
+
+getOneById
+http://localhost:5000/api/film/301
+
+updateFilm put
+http://localhost:5000/api/film
+{
+  "id": 301,
+  "nameRu": "Матрица",
+  "nameEn": "The Matrix",
+  "nameOriginal": "The Matrix",
+  "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/301.jpg",
+  "ratingKinopoisk": 8.5,
+  "year": 1999,
+  "filmLength": 136,
+  "description": "Жизнь Томаса Андерсона разделена на две части:",
+  "type": "FILM",
+  "ratingAgeLimits": "age16",
+  "genre":1,
+  "countries": [
+       "США",
+       "Великобритания",
+       "СНГ"
+
+  ],
+  "genres": [
+      "фантастика"
+  ]
+}

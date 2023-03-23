@@ -3,9 +3,10 @@ const router = new Router()
 const filmController = require('../controllers/filmController')
 
 
-router.get('/films', filmController.getAllFilms)
-router.get('/film', filmController.getOneBuId)
-router.post('/film', filmController.newFilm,)
-router.delete('/film', filmController.deleteFilm)
+router.get('/all', filmController.getAllFilms)
+router.get('/:id', filmController.getOneBuId)
+router.post('/', filmController.newFilm)
+router.put('/', filmController.updateFilm)
+router.delete('/', filmController.deleteFilm)
 
 module.exports = router
