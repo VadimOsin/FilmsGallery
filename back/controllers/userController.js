@@ -2,7 +2,8 @@ const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const db = require("..//db")
-
+const uuid = require('uuid')
+const path = require('path');
 const generateJwt = (id, email, role) => {
     return jwt.sign(
         {id, email, role},
@@ -14,7 +15,7 @@ const generateJwt = (id, email, role) => {
 class UserController {
     async registration(req, res, next) {
         try {
-            const {email, password, role} = req.body
+            const {email, password, role, name, surname} = req.body
             if (!email || !password) {
                 return next(ApiError.badRequest('Некорректный email или password'))
             }
@@ -24,12 +25,18 @@ class UserController {
             if (candidate.rows[0]) {
                 return next(ApiError.badRequest('Пользователь с таким email уже существует'))
             }
+            const {img} = req.files
+            let fileName = uuid.v4() + ".jpg"
+            img.mv(path.resolve(__dirname, '..', 'static/user', fileName))
+
             const hashPassword = await bcrypt.hash(password, 5)
             const user = await db.query(`INSERT INTO "user" (email, password, role)
                                          values ($1, $2, $3) RETURNING *`, [email, hashPassword, role])
-
+            const user_meta = await db.query(`INSERT INTO usermeta (name, surname, img, user_meta_id)
+                                              values ($1, $2, $3,
+                                                      $4) RETURNING *`, [name, surname, fileName, user.rows[0].id])
             const token = generateJwt(user.rows[0].id, user.rows[0].email, user.rows[0].role)
-            return res.json({token})
+            return res.json({ token, "info": user_meta.rows[0] });
         } catch (e) {
             res.status(400).json({message: "registration error"})
         }
@@ -48,8 +55,11 @@ class UserController {
             if (!comparePassword) {
                 return next(ApiError.internal('Указан неверный пароль'))
             }
+            const user_meta = await db.query(`SELECT *
+                                         FROM usermeta
+                                         where user_meta_id = $1`, [user.rows[0].id])
             const token = generateJwt(user.rows[0].id, user.rows[0].email, user.rows[0].role)
-            return res.json({token})
+            return res.json({ token, "info": user_meta.rows[0] });
         } catch (e) {
             res.status(400).json({message: "login error"})
         }
