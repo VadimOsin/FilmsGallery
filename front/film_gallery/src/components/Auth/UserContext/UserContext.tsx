@@ -1,18 +1,39 @@
 import React, { createContext } from 'react';
 export interface IUser {
-    username: string;
     email: string;
+
+    password:string;
+
+    role:string;
+
+    name:string;
+
+    surname:string;
+
+    img:string;
     isAuth: boolean;
 }
-export interface UserContextType extends IUser {
-    login: (username: string, password: string) => void;
+export interface IUserContextType extends IUser {
+    login: (email: string, password: string, role: string, name: string, surname: string, img: string) => void;
     logout: () => void;
 }
 
-export const UserContext = createContext<UserContextType>({
-    username: '',
+export const UserContext = createContext<IUserContextType>({
     email: '',
+
+    password:'',
+
+    role:'',
+
+    name:'',
+
+    surname:'',
+
+    img:'',
+
     isAuth: false,
+
     login: () => {},
+
     logout: () => {},
 });

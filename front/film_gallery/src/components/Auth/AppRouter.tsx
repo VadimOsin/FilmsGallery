@@ -1,36 +1,67 @@
 import { FC, useState} from 'react';
 import {Routes, Route} from 'react-router-dom';
-import {authRoutes, publicRoutes} from './Auth/Routes';
-import {IUser, UserContext} from "./Auth/UserContext/UserContext";
+import {authRoutes, publicRoutes} from './Routes';
+import {IUser, UserContext} from "./UserContext/UserContext";
 
 const AppRouter: FC = () => {
-    const isAuth = false;
 
     const [user, setUser] = useState<IUser>({
-        username: '',
         email: '',
-        isAuth: false,
+
+        password: '',
+
+        role: '',
+
+        name: '',
+
+        surname: '',
+
+        img: '',
+
+        isAuth: false
     });
 
-    const login = (username: string, email: string) => {
+    const login = (email: string, password: string, role: string, name: string, surname: string, img: string) => {
         setUser({
-            username,
-            email: 'john@example.com',
+            email: email,
+
+            password: password,
+
+            role: role,
+
+            name: name,
+
+            surname: surname,
+
+            img: img,
+
             isAuth: true,
         });
     };
 
     const logout = () => {
         setUser({
-            username: '',
             email: '',
+
+            password:'',
+
+            role:'',
+
+            name:'',
+
+            surname:'',
+
+            img:'',
+
             isAuth: false,
         });
     };
+
+
     return (
         <UserContext.Provider value={{...user, login, logout}}>
             <Routes>
-                {isAuth && authRoutes.map(({path, Component}) =>
+                {user.isAuth && authRoutes.map(({path, Component}) =>
                     <Route key={path} path={path} element={<Component/>}/>
                 )}
                 {publicRoutes.map(({path, Component}) =>
