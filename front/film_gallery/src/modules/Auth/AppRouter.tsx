@@ -21,7 +21,7 @@ const AppRouter: FC = () => {
         isAuth: false
     });
 
-    const login = (email: string, password: string, role: string, name: string, surname: string, img: string) => {
+    const signIn = (email: string, password: string, role: string, name: string, surname: string, img: string) => {
         setUser({
             email: email,
 
@@ -39,7 +39,7 @@ const AppRouter: FC = () => {
         });
     };
 
-    const logout = () => {
+    const logOut = () => {
         setUser({
             email: '',
 
@@ -59,7 +59,7 @@ const AppRouter: FC = () => {
 
 
     return (
-        <UserContext.Provider value={{...user, login, logout}}>
+        <UserContext.Provider value={{...user, signIn, logOut}}>
             <Routes>
                 {user.isAuth && authRoutes.map(({path, Component}) =>
                     <Route key={path} path={path} element={<Component/>}/>

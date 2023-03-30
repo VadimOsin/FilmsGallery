@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useContext, useState} from 'react';
-import {UserContext} from "../Auth/UserContext/UserContext";
+import {IUser, UserContext} from "../Auth/UserContext/UserContext";
 import './Login.css'
 import {Link, useLocation} from "react-router-dom";
 import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "../Auth/utils/consts";
@@ -8,6 +8,7 @@ import {login, registration} from "./axios/UserApi";
 const Login = () => {
     const location = useLocation()
     const isLogin = location.pathname === LOGIN_ROUTE
+    const {signIn} = useContext(UserContext);
     const user = useContext(UserContext);
     const [file, setFile] = useState<File | null>(null);
     const [reg, setReg] = useState({
@@ -72,9 +73,10 @@ const Login = () => {
             }
         }
         try {
-            let data;
+            let data: IUser
             if (isLogin) {
-                data = await login(reg.email, reg.password);
+                data = await login(reg.email, reg.password) as IUser;
+                signIn(data.email, data.password, data.role, data.name, data.surname, data.img)
             } else {
                 const formData = new FormData()
                 formData.append('email', reg.email)
@@ -85,7 +87,8 @@ const Login = () => {
                 if (file) {
                     formData.append('img', file);
                 }
-                data = await registration(formData);
+                data = await registration(formData) as IUser;
+                signIn(data.email, data.password, data.role, data.name, data.surname, data.img)
             }
         } catch (e) {
             alert(e)

@@ -14,8 +14,8 @@ export interface IUser {
     isAuth: boolean;
 }
 export interface IUserContextType extends IUser {
-    login: (email: string, password: string, role: string, name: string, surname: string, img: string) => void;
-    logout: () => void;
+    signIn: (email: string, password: string, role: string, name: string, surname: string, img: string) => void;
+    logOut: () => void;
 }
 
 export const UserContext = createContext<IUserContextType>({
@@ -33,7 +33,7 @@ export const UserContext = createContext<IUserContextType>({
 
     isAuth: false,
 
-    login: () => {},
+    signIn: () => {},
 
-    logout: () => {},
+    logOut: () => {},
 });

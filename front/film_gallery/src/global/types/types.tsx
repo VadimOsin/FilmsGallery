@@ -51,8 +51,8 @@ export interface IFilm {
     genres: string[]; // This could be an array of objects if there's more data to represent
 }
 
-export interface IUserMeta {
-    id: number;
+export interface IUserMeta extends IUser{
+
     name: string;
     surname: string ;
     img: string;
