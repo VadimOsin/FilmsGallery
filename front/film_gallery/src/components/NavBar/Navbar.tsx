@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import './Navbar.css'
-import {UserContext} from "../Auth/UserContext/UserContext";
+import {UserContext} from "../../modules/Auth/UserContext/UserContext";
 
 const Navbar = () => {
     const user = useContext(UserContext);

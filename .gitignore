@@ -1,1 +1,5 @@
+/.idea
 /back/node_modules/
+/back/test.sql
+
+/front/film_gallery/node_modules
