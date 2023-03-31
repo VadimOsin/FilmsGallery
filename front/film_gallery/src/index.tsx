@@ -11,6 +11,7 @@ const root = ReactDOM.createRoot(
 root.render(
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
         <BrowserRouter>
+
             <AppRouter/>
         </BrowserRouter>
     </ErrorBoundary>

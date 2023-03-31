@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from "../components/NavBar/Navbar";
 import Login from "../modules/Login/Login";
 
 
@@ -7,7 +6,6 @@ const Auth = () => {
 
     return (
         <div>
-            <Navbar/>
             <Login/>
         </div>
     );

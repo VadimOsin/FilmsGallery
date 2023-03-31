@@ -8,7 +8,7 @@ const generateJwt = (id, email, role,name,surname,img) => {
     return jwt.sign(
         {id, email, role,name,surname,img},
         process.env.SECRET_KEY,
-        {expiresIn: '24h'}
+        {expiresIn: '1h'}
     )
 }
 
@@ -65,8 +65,8 @@ class UserController {
         }
     }
 
-    async check(req, res, next) {
-        const token = generateJwt(req.user.id, req.user.email, req.user.role)
+    async check(req, res) {
+        const token = generateJwt(req.user.id, req.user.email, req.user.role,req.user.name,req.user.surname,req.user.img)
         return res.json({token})
     }
 }
