@@ -26,7 +26,7 @@
 .login__input:focus,
 .login__input:hover {
   outline: none;
-  border-bottom-color: #6A679E;
+  border-bottom-color: #4d4d57;
 }
 
 .login__submit {
@@ -39,8 +39,8 @@
   font-weight: 700;
   display: flex;
   align-items: center;
-  color: #4C489D;
-  box-shadow: 0 2px 2px #5C5696;
+  color: #41cc4d;
+  box-shadow: 0 2px 2px #38a84b;
   cursor: pointer;
   transition: .2s;
 }
@@ -48,7 +48,7 @@
 .login__submit:active,
 .login__submit:focus,
 .login__submit:hover {
-  border-color: #6A679E;
+  border-color: #00ef15;
   outline: none;
 }
 
@@ -71,4 +71,10 @@
   box-shadow: 0 2px 2px #b42323;
   cursor: pointer;
   transition: .2s;
+}
+.login__reset:active,
+.login__reset:focus,
+.login__reset:hover {
+  border-color: #ad2020;
+  outline: none;
 }

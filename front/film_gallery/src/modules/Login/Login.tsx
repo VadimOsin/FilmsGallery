@@ -4,12 +4,12 @@ import './Login.css'
 import {Link, useLocation} from "react-router-dom";
 import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "../Auth/utils/consts";
 import {login, registration} from "./axios/UserApi";
+import RedirectModal from "../../components/redirectModal/redirectModal";
 
 const Login = () => {
     const location = useLocation()
     const isLogin = location.pathname === LOGIN_ROUTE
     const {signIn} = useContext(UserContext);
-    const user = useContext(UserContext);
     const [file, setFile] = useState<File | null>(null);
     const [reg, setReg] = useState({
         email: '',
@@ -22,6 +22,15 @@ const Login = () => {
 
         surname: ''
     });
+
+    const [modal, setModal] = useState({
+        title: '',
+        text: '',
+        isOpen: false
+    })
+    const handleCloseModal = () => {
+        setModal({...modal, isOpen: false});
+    };
 
     const onReset = () => {
         setReg({
@@ -51,48 +60,74 @@ const Login = () => {
     }
     const authClick = async () => {
         if (!isLogin) {
+
             if (!reg.email || !isEmailValid(reg.email)) {
-                alert("Введите корректный email");
+                setModal({title: 'Ошибка при регистрации!', text: "Введите корректный email", isOpen: true});
                 return;
             }
             if (!reg.password || reg.password.length < 8 || reg.password.length > 12) {
-                alert("Введите пароль от 8 до 12 символов");
+                setModal({title: 'Ошибка при регистрации!', text: "Введите пароль от 8 до 12 символов", isOpen: true});
                 return;
             }
             if (!reg.name || reg.name.length < 2) {
-                alert("Введите имя (минимум 2 символа)");
+                setModal({title: 'Ошибка при регистрации!', text: "Введите имя (минимум 2 символа)", isOpen: true});
                 return;
             }
             if (!reg.surname || reg.surname.length < 2) {
-                alert("Введите фамилию (минимум 2 символа)");
+                setModal({title: 'Ошибка при регистрации!', text: "Введите фамилию (минимум 2 символа)", isOpen: true});
                 return;
             }
             if (!file) {
-                alert("Загрузите фото");
+                setModal({title: 'Ошибка при регистрации!', text: "Загрузите фото", isOpen: true});
                 return;
             }
         }
-        try {
-            let data: IUser
-            if (isLogin) {
-                data = await login(reg.email, reg.password) as IUser;
-                signIn(data.email, data.password, data.role, data.name, data.surname, data.img)
-            } else {
-                const formData = new FormData()
-                formData.append('email', reg.email)
-                formData.append('password', reg.password)
-                formData.append('role', 'USER')
-                formData.append('name', reg.name)
-                formData.append('surname', reg.surname)
-                if (file) {
-                    formData.append('img', file);
-                }
-                data = await registration(formData) as IUser;
-                signIn(data.email, data.password, data.role, data.name, data.surname, data.img)
+
+        let data
+        if (isLogin) {
+            data = await login(reg.email, reg.password)
+                .catch(
+                    error => {
+                        setModal({
+                            title: 'Повторите попытку',
+                            text: `${error.message}`,
+                            isOpen: true
+                        });
+                    }
+                ) as IUser;
+            signIn(data.email, data.password, data.role, data.name, data.surname, data.img)
+            setModal({
+                title: 'Вход выполнен!',
+                text: "Подождите вас перенаправит на главную страницу",
+                isOpen: true
+            });
+        } else {
+            const formData = new FormData()
+            formData.append('email', reg.email)
+            formData.append('password', reg.password)
+            formData.append('role', 'USER')
+            formData.append('name', reg.name)
+            formData.append('surname', reg.surname)
+            if (file) {
+                formData.append('img', file);
             }
-        } catch (e) {
-            alert(e)
+            data = await registration(formData).catch(
+                error => {
+                    setModal({
+                        title: 'Повторите попытку',
+                        text: `${error.message}`,
+                        isOpen: true
+                    });
+                }
+            ) as IUser;
+            signIn(data.email, data.password, data.role, data.name, data.surname, data.img)
+            setModal({
+                title: 'Регистрация прошла успешно!',
+                text: "Подождите вас перенаправит на главную страницу",
+                isOpen: true
+            });
         }
+
     };
 
 
@@ -142,8 +177,14 @@ const Login = () => {
                     </div>
                 }
                 </span>
-
             </div>
+
+            <RedirectModal
+                title={modal.title}
+                children={modal.text}
+                isOpen={modal.isOpen}
+                onClose={handleCloseModal}
+            />
         </div>
     );
 };
