@@ -101,6 +101,13 @@ const Login = () => {
                 text: "Подождите вас перенаправит на главную страницу",
                 isOpen: true
             });
+            setTimeout(()=>{
+                setModal({
+                    title: 'Вход выполнен!',
+                    text: "Подождите вас перенаправит на главную страницу",
+                    isOpen: false
+                });
+            },1000)
         } else {
             const formData = new FormData()
             formData.append('email', reg.email)
@@ -126,6 +133,13 @@ const Login = () => {
                 text: "Подождите вас перенаправит на главную страницу",
                 isOpen: true
             });
+            setTimeout(()=>{
+                setModal({
+                    title: 'Регистрация прошла успешно!',
+                    text: "Подождите вас перенаправит на главную страницу",
+                    isOpen: false
+                });
+            },1000)
         }
 
     };
