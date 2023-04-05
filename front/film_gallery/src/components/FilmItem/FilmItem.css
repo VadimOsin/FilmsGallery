@@ -1,0 +1,116 @@
+.filmItem {
+    display: flex;
+    flex-direction: column;
+}
+
+.filmItem__card {
+    flex: 1;
+    flex-basis: 300px;
+    flex-grow: 0;
+    height: 325px;
+    background: #fff;
+    border: 2px solid #fff;
+    box-shadow: 0 4px 7px rgba(0, 0, 0, .5);
+    cursor: pointer;
+    transition: all .5s cubic-bezier(.8, .5, .2, 1.4);
+    overflow: hidden;
+    position: relative;
+}
+
+.filmItem__card img {
+    width: 100%;
+    height: 100%;
+    transition: all .5s cubic-bezier(.8, .5, .2, 1.4);
+}
+
+.filmItem__descriptions {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, .7);
+    width: 100%;
+    height: 100%;
+    transition: all .7s ease-in-out;
+    padding: 20px;
+    box-sizing: border-box;
+    clip-path: circle(0% at 100% 100%);
+}
+
+.filmItem__card:hover .filmItem__descriptions {
+    left: 0;
+    transition: all .7s ease-in-out;
+    clip-path: circle(75%);
+}
+
+.filmItem__card:hover {
+    transition: all .5s cubic-bezier(.8, .5, .2, 1.4);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .3);
+    transform: scale(.97);
+}
+
+.filmItem__card:hover img {
+    transition: all .5s cubic-bezier(.8, .5, .2, 1.4);
+    transform: scale(1.6) rotate(20deg);
+    filter: blur(3px);
+}
+
+.filmItem__card h1 {
+    color: #ff3838;
+    letter-spacing: 1px;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.filmItem__list div {
+    line-height: 24px;
+    height: 70%;
+}
+
+.filmItem__list {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.filmItem__manipulations {
+    position: revert;
+    display: flex;
+    justify-content: end;
+}
+
+.manipulations__btn:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
+.manipulations__btn {
+    width: max-content;
+    padding: 5px;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.filmItem__add {
+    background-color: green;
+}
+
+.filmItem__edit {
+    background-color: yellow;
+}
+
+.filmItem__delete {
+    background-color: red;
+}
+
+.filmItem__list--item {
+    margin-left: 2px;
+    background: #999999;
+    border-radius: 5px;
+    padding: 1px 4px;
+}
+
+.filmItem__list--ul {
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+}

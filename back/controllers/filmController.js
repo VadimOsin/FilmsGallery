@@ -2,29 +2,31 @@ const db = require("..//db")
 
 
 class filmController {
+
     async newFilm(req, res) {
         try {
             const {
                 id,
-                nameRu,
-                nameEn,
-                nameOriginal,
-                posterUrlPreview,
-                ratingKinopoisk,
+                nameru,
+                nameen,
+                nameoriginal,
+                posterurlpreview,
+                ratingkinopoisk,
                 year,
-                filmLength,
-                description,
+                filmlength,
+                descriptions,
                 type,
-                ratingAgeLimits,
+                ratingagelimits,
                 genres,
                 countries
-            } = req.body
+            } = req.body.film
             const newPost = await db.query(`INSERT INTO film (id, nameRu, nameEn, nameOriginal, posterUrlPreview,
                                                               ratingKinopoisk, year, filmLength, descriptions, type,
                                                               ratingAgeLimits, genres,
                                                               countries)
-                                            values ($1, $2, $3,$4, $5, $6, $7, $8, $9, $10,
-                                                    $11,$12,$13) RETURNING *`, [id, nameRu, nameEn, nameOriginal, posterUrlPreview, ratingKinopoisk, year, filmLength, description, type, ratingAgeLimits, genres,
+                                            values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,
+                                                    $11, $12,
+                                                    $13) RETURNING *`, [id, nameru, nameen, nameoriginal, posterurlpreview, ratingkinopoisk, year, filmlength, descriptions, type, ratingagelimits, genres,
                 countries])
             res.json(newPost.rows[0])
         } catch (err) {
@@ -36,7 +38,7 @@ class filmController {
 
         try {
             const film = await db.query(`SELECT *
-                                             FROM film`)
+                                         FROM film`)
             res.json(film.rows)
         } catch (err) {
             console.error(err)
@@ -48,8 +50,8 @@ class filmController {
         try {
             const {id} = req.params
             const film = await db.query(`SELECT *
-                                             FROM film
-                                             where id = $1`, [id])
+                                         FROM film
+                                         where id = $1`, [id])
             res.json(film.rows[0])
         } catch (err) {
             console.error(err)
@@ -61,9 +63,9 @@ class filmController {
         try {
             const id = req.query.id
             const film = await db.query(`DELETE
-                                             FROM film
-                                             WHERE id = $1`, [id])
-            res.json({message:'Film deleted'})
+                                         FROM film
+                                         WHERE id = $1`, [id])
+            res.json({message: 'Film deleted'})
         } catch (err) {
             console.error(err)
             res.status(500).json({message: 'Failed delete film' + err})
@@ -100,7 +102,7 @@ class filmController {
                                                 ratingAgeLimits  = $11,
                                                 genres           = $12,
                                                 countries        = $13
-                                            WHERE id = $1 RETURNING *;`,[id, nameRu, nameEn, nameOriginal, posterUrlPreview, ratingKinopoisk, year, filmLength, description, type, ratingAgeLimits, genres,
+                                            WHERE id = $1 RETURNING *;`, [id, nameRu, nameEn, nameOriginal, posterUrlPreview, ratingKinopoisk, year, filmLength, description, type, ratingAgeLimits, genres,
                 countries])
             res.json(newPost.rows[0])
         } catch (err) {

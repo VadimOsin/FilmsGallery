@@ -42,7 +42,7 @@ export interface IFilm {
     nameoriginal: string;
     posterurlpreview: string;
     descriptions: string;
-    ratingkinopoisk: string;
+    ratingkinopoisk: number;
     year: number;
     type: string;
     ratingagelimits: string | null;

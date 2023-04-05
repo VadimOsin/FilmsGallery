@@ -66,7 +66,6 @@ const AppRouter: FC = () => {
         setTimeout(() => {
             check().then((response) => {
                 let data = response as IUser
-                console.log(data)
                 signIn(data.email, data.password, data.role, data.name, data.surname, data.img)
             }).finally(() => setLoading(false))
         }, 1000)
