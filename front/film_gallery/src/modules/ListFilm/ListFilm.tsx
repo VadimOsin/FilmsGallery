@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import FilmItem from "../../components/FilmItem/FilmItem";
 import './ListFilm.css'
-import {addFilm, getFilmById, getFilms} from "./axios/filmsApi";
+import {getFilms} from "./axios/filmsApi";
 import {IFilm} from "../../global/types/types";
 import Pagination from "../../components/Pagination/Pagination";
 import YearSelect from "../../components/YearSelect/YearSelect";

@@ -1,0 +1,156 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+body {
+    background: #43423E;
+}
+
+.movie-card {
+    font: 14px/22px "Lato", Arial, sans-serif;
+    color: #A9A8A3;
+    padding: 40px 0;
+}
+
+.container {
+    margin: 0 auto;
+    width: 780px;
+    background: linear-gradient(#a69f9f,white);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.cover {
+    position: relative;
+    top: 160px;
+    left: 40px;
+    z-index: 2;
+    width: 12rem;
+}
+.hero{
+
+}
+.details {
+    padding: 0 0 0 280px;
+}
+
+ .title1 {
+    color: #494747;
+    font-size: 44px;
+    margin-bottom: 13px;
+    position: relative;
+    line-height: initial;
+}
+
+.title2 {
+    color: #858585;
+    font-size: 23px;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+
+.details .likes {
+    margin-left: 24px;
+}
+
+.details .likes:before {
+    content: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/icon_like.png");
+    position: relative;
+    top: 2px;
+    padding-right: 7px;
+}
+
+.description {
+    font-size: 16px;
+    line-height: 26px;
+    color: #B1B0AC;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    margin-left: 1rem;
+}
+
+.column1 {
+    padding: 10px;
+    width: 250px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.tag {
+    background: white;
+    border-radius: 10px;
+    padding: 1px;
+    font-size: 14px;
+    line-height: 35px;
+    cursor: pointer;
+    margin: 2px;
+}
+
+.tag:hover {
+    background: #ddd;
+}
+
+.column2 {
+    width: 480px;
+    padding: 0 10px;
+}
+
+.avatars {
+    margin-top: 23px;
+}
+
+.avatars img {
+    cursor: pointer;
+}
+
+.avatars img:hover {
+    opacity: 0.6;
+}
+
+.avatars a:hover {
+    text-decoration: none;
+}
+
+.rating {
+    border: none;
+    float: left;
+}
+.rating > input {
+    display: none;
+}
+.rating > label:before {
+    margin: 0 5px 5px 5px;
+    font-size: 1em;
+    font-family: FontAwesome,sans-serif;
+    display: inline-block;
+    content: "\f005";
+}
+.rating > .half:before {
+    content: "\f089";
+    position: absolute;
+}
+.rating > label {
+    color: #ddd;
+    float: right;
+}
+/***** CSS Magic to Highlight Stars on Hover *****/
+.rating > input:checked ~ label, .rating:not(:checked) > label:hover, .rating:not(:checked) > label:hover ~ label {
+    /* show gold star when clicked */
+    /* hover current star */
+    color: #ffd700;
+}
+/* hover previous stars in list */
+.rating > input:checked + label:hover, .rating > input:checked ~ label:hover, .rating > label:hover ~ input:checked ~ label, .rating > input:checked ~ label:hover ~ label {
+    /* hover current star when changing rating */
+    /* lighten current selection */
+    color: #ffed85;
+}

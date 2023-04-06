@@ -15,7 +15,3 @@ export const addFilm = async (film: IFilm): Promise<IFilm> => {
     return data
 };
 
-export const getFilmById = async (id:number) => {
-   // const {data} = await instance.get(`api/v2.2/films/${id}`)
-   // return data;
-}
