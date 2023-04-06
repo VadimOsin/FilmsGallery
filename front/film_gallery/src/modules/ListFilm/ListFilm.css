@@ -9,3 +9,10 @@
     row-gap: 40px;
     margin: 0 auto;
 }
+.filmList__sort{
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: center;
+    margin: 1rem auto;
+}

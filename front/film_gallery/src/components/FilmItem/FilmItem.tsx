@@ -27,7 +27,7 @@ const FilmItem: React.FC<IFilm> = ({
                 <div className="filmItem__edit manipulations__btn">Edit</div>
                 <div className="filmItem__delete manipulations__btn">Delete</div>
             </div> : ""}
-            <div className="filmItem__card" onClick={() => navigate(`/${id}`)}>
+            <div className="filmItem__card" onClick={() => navigate(`films/${id}`)}>
                 <img src={posterurlpreview} alt='user'/>
                 <div className="filmItem__descriptions">
                     <h1>{nameoriginal ? nameoriginal : nameru ? nameru : nameen}</h1>

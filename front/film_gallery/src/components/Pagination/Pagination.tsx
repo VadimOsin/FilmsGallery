@@ -22,9 +22,9 @@ const Pagination: React.FC<Pagination> = ({totalPages, active, setPage}) => {
                     <div onClick={(active - 1) >= 1 ? () => setPage(active - 1) : undefined}>«</div>
                 </li>
                 {pages?.map((page: number, index: number) =>
-                    <li>
+                    <li  key={page}>
                         <div
-                            key={page}
+
                             className={index + 1 === active ? "active" : ''}
                             onClick={() => setPage(index + 1)}
                         >

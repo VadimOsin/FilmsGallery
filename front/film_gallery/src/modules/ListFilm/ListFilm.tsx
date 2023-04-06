@@ -4,16 +4,23 @@ import './ListFilm.css'
 import {addFilm, getFilmById, getFilms} from "./axios/filmsApi";
 import {IFilm} from "../../global/types/types";
 import Pagination from "../../components/Pagination/Pagination";
+import YearSelect from "../../components/YearSelect/YearSelect";
+import RatingSelect from "../../components/RatingSelect/RatingSelect";
 
 const ListFilm = () => {
+        let date = new Date().getFullYear()
         const [films, setFilms] = useState<IFilm[]>([])
-        const [pages,setPages] = useState(1)
+        const [pages, setPages] = useState(1)
+        const [year, setYear] = useState(`&yearFrom=1980&yearTo=${date}`)
+        const [rating, setRating] = useState('')
         useEffect(() => {
             getFilms().then((response) => {
                 setFilms(response)
             })
         }, [])
+        useEffect(() => {
 
+        }, [year, rating])
         // useEffect  (() => {
         // const film: IFilm = {
         //     id: fil?.kinopoiskId ?? Math.floor(Math.random() * 1000000),
@@ -51,7 +58,12 @@ const ListFilm = () => {
             // }
         }
         return (<>
+                <div className="filmList__sort">
+                    <YearSelect date={date} setYear={setYear}/>
+                    <RatingSelect setRating={setRating}/>
+                </div>
                 <div className='filmList'>
+
                     {Array.isArray(films) && films.map((film) =>
                         <FilmItem
                             key={film.id}

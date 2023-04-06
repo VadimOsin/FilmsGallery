@@ -1,13 +1,14 @@
 import React, {ChangeEvent, useContext, useState} from 'react';
 import {IUser, UserContext} from "../Auth/UserContext/UserContext";
 import './Login.css'
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation,useNavigate} from "react-router-dom";
 import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "../Auth/utils/consts";
 import {login, registration} from "./axios/UserApi";
 import RedirectModal from "../../components/redirectModal/redirectModal";
 
 const Login = () => {
     const location = useLocation()
+    let navigate=useNavigate()
     const isLogin = location.pathname === LOGIN_ROUTE
     const {signIn} = useContext(UserContext);
     const [file, setFile] = useState<File | null>(null);
@@ -108,6 +109,7 @@ const Login = () => {
                     isOpen: false
                 });
             },1000)
+            navigate("/")
         } else {
             const formData = new FormData()
             formData.append('email', reg.email)
@@ -140,6 +142,7 @@ const Login = () => {
                     isOpen: false
                 });
             },1000)
+            navigate("/")
         }
 
     };

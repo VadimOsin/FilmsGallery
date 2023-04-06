@@ -4,7 +4,9 @@
     margin: 0;
 }
 
-.pagination li {display: inline;}
+.pagination li {
+    display: inline;
+}
 
 .pagination li div {
     color: black;
@@ -21,6 +23,11 @@
     border: 1px solid #4CAF50;
 }
 
-.pagination li div:hover:not(.active) {background-color: #ddd;}
+.pagination li div:hover:not(.active) {
+    background-color: #ddd;
+}
 
-div.center {text-align: center;}
+.center {
+    text-align: center;
+    margin-top: 1rem;
+}

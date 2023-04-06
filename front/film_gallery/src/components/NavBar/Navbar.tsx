@@ -3,12 +3,13 @@ import './Navbar.css'
 import {UserContext} from "../../modules/Auth/UserContext/UserContext";
 import UserModal from "../userModal/userModal";
 import {Link} from "react-router-dom";
-import {FILM_ROUTE, LOGIN_ROUTE} from "../../modules/Auth/utils/consts";
+import {FILMS_ROUTE, LOGIN_ROUTE} from "../../modules/Auth/utils/consts";
 
 const Navbar = () => {
     const user = useContext(UserContext);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const {logOut} = useContext(UserContext);
+
 
     return (
         <div className='navbar'>
@@ -25,7 +26,7 @@ const Navbar = () => {
                     }
                     <UserModal isOpen={isModalVisible} onClose={setIsModalVisible}/>
                     {
-                        user.isAuth ? <Link to={FILM_ROUTE} onClick={logOut}>Log Out</Link> :
+                        user.isAuth ? <Link to={FILMS_ROUTE} onClick={logOut}>Log Out</Link> :
                             <Link to={LOGIN_ROUTE}>Sign In / Sign Up </Link>
                     }
 
