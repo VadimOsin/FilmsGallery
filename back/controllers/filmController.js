@@ -40,8 +40,8 @@ class filmController {
                 category = "ALL",
                 ratingTo = 10,
                 keyword = "",
-                yearFrom = 1980,
-                yearTo = 2023,
+                yearFrom = 1500,
+                yearTo = 3000,
                 page = 1,
                 limit = 10,
             } = req.query;
