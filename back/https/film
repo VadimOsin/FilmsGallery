@@ -25,7 +25,7 @@ http://localhost:5000/api/film
 }
 
 getAll
-http://localhost:5000/api/film/all
+http://localhost:5000/api/film/all?page=1&limit=5&category=TV_SERIES&ratingTo=10&yearFrom=1994&yearTo=1994&keyword=
 
 getOneById
 http://localhost:5000/api/film/301
