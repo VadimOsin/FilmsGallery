@@ -4,7 +4,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #000;
 }
 .spinner__wave {
     width: 5px;

@@ -1,10 +1,12 @@
 import React from 'react';
 import './RatihgSelect.css'
 
-interface ratingSelect{
-    setRating: (year: string) => void
+interface ratingSelect {
+    setRating: (year: number) => void
+    setPages: (year: number) => void
 }
-const RatingSelect:React.FC<ratingSelect> = ({setRating}) => {
+
+const RatingSelect: React.FC<ratingSelect> = ({setRating, setPages}) => {
     let rating = []
     for (let i = 0; i < 10; i++) {
         rating.push(i + 1)
@@ -13,7 +15,10 @@ const RatingSelect:React.FC<ratingSelect> = ({setRating}) => {
     return (
         <div className="ratingSelect">
             <label>
-                <select onChange={(event) => setRating(event.target.value)}>
+                <select onChange={(event) => {
+                    setRating(parseFloat(event.target.value))
+                    setPages(1)
+                }}>
                     <option value={`&yearFrom=''&yearTo=''`}>Рейтинг от: 0-10</option>
                     {
                         rating.map(r =>

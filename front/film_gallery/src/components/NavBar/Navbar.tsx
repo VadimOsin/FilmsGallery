@@ -14,10 +14,7 @@ const Navbar = () => {
     return (
         <div className='navbar'>
             <div className="navbar__container">
-                <div className='navbar__item'>LOGO</div>
-                <div className='navbar__item'>
-                    <input className='navbar__input'/>
-                </div>
+                <div className='navbar__item'><Link to={FILMS_ROUTE} className="navbar__logo">LOGO</Link></div>
                 <div className='navbar__item'>
                     {
                         user.isAuth ?

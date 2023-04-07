@@ -1,0 +1,20 @@
+.searchWorld__input-container {
+    display: flex;
+    margin: 15px;
+}
+
+.searchWorld__input {
+    height: 50px;
+    width: 25vw;
+}
+
+.searchWorld__svg {
+    position: relative;
+    top: 1.8rem;
+    left: -2rem;
+    transform: translateY(-50%);
+}
+.searchWorld__svg:hover{
+    cursor: pointer;
+    scale: 1.1;
+}
