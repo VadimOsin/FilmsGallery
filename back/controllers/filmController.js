@@ -1,4 +1,5 @@
 const db = require("..//db")
+const {INTEGER} = require("sequelize");
 
 
 class filmController {
@@ -60,7 +61,7 @@ class filmController {
             }
 
             if (ratingTo < 10) {
-                query += ` AND ratingkinopoisk <= ${ratingTo}`;
+                query += ` AND ratingkinopoisk >= ${ratingTo} AND ratingkinopoisk < ${Number(parseInt(ratingTo) + 1)}`;
             }
 
             if (keyword !== "") {
