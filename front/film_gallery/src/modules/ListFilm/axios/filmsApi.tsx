@@ -18,8 +18,8 @@ export const getFilms = async ({page, limit, category, ratingTo, year, keyword}:
     );
     return data;
 }
-export const addFilm = async (film: IFilm): Promise<IFilm> => {
-    const {data} = await $host.post('api/film', {film})
+export const newFilm = async (film: any) => {
+    const {data} = await $host.put('api/film', film)
         .catch(
             error => {
                 throw new Error(error.response.data.message);

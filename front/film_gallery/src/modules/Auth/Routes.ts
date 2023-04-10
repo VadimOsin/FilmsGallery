@@ -2,11 +2,12 @@ import {ADMIN_ROUTE, FILM_ROUTE, FILMS_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE} f
 import Auth from "../../pages/Auth";
 import Film from "../../pages/Film";
 import FilmById from "../FilmById/FilmById";
+import AddOrEditFilm from "../AddOrEditFilm/AddOrEditFilm";
 
 export const authRoutes = [
     {
-        path: FILMS_ROUTE,
-        Component: Film
+        path: ADMIN_ROUTE+ '/:id',
+        Component: AddOrEditFilm
     }
 ]
 

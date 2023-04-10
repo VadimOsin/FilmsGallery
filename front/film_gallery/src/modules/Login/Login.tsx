@@ -120,6 +120,7 @@ const Login = () => {
             if (file) {
                 formData.append('img', file);
             }
+            console.log(formData)
             data = await registration(formData).catch(
                 error => {
                     setModal({

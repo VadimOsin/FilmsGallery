@@ -1,5 +1,7 @@
 const db = require("..//db")
 const {INTEGER} = require("sequelize");
+const uuid = require("uuid");
+const path = require("path");
 
 
 class filmController {
@@ -188,34 +190,42 @@ class filmController {
         try {
             const {
                 id,
-                nameRu,
-                nameEn,
-                nameOriginal,
-                posterUrlPreview,
-                ratingKinopoisk,
+                nameru = '',
+                nameen = '',
+                nameoriginal = '',
+                posterurlpreview,
+                ratingkinopoisk,
                 year,
-                filmLength,
+                filmlength,
                 description,
                 type,
-                ratingAgeLimits,
+                ratingagelimits,
                 genres,
                 countries
             } = req.body
+
+            let fileName = ''
+            if (!posterurlpreview) {
+                const {img} = req.files
+                fileName = uuid.v4() + ".jpg"
+                img.mv(path.resolve(__dirname, '..', 'static/film', fileName))
+            }
+
             const newPost = await db.query(`UPDATE film
-                                            SET nameRu           = $2,
-                                                nameEn           = $3,
-                                                nameOriginal     = $4,
-                                                posterUrlPreview = $5,
-                                                ratingKinopoisk  = $6,
+                                            SET nameru           = $2,
+                                                nameen           = $3,
+                                                nameoriginal     = $4,
+                                                posterurlpreview = $5,
+                                                ratingkinopoisk  = $6,
                                                 year             = $7,
-                                                filmLength       = $8,
+                                                filmlength       = $8,
                                                 descriptions     = $9,
                                                 type             = $10,
-                                                ratingAgeLimits  = $11,
+                                                ratingagelimits  = $11,
                                                 genres           = $12,
                                                 countries        = $13
-                                            WHERE id = $1 RETURNING *;`, [id, nameRu, nameEn, nameOriginal, posterUrlPreview, ratingKinopoisk, year, filmLength, description, type, ratingAgeLimits, genres,
-                countries])
+                                            WHERE id = $1 RETURNING *;`, [id, nameru, nameen, nameoriginal, posterurlpreview ? posterurlpreview : fileName, ratingkinopoisk, year, filmlength, description, type, ratingagelimits, JSON.parse(genres),
+                JSON.parse(countries)])
             res.json(newPost.rows[0])
         } catch (err) {
             res.status(400).json({message: "update film error" + err})

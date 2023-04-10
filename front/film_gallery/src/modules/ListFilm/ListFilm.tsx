@@ -37,43 +37,6 @@ const ListFilm = () => {
             }, 1000)
         }, [year, rating, pages, str])
 
-
-        // useEffect  (() => {
-        // const film: IFilm = {
-        //     id: fil?.kinopoiskId ?? Math.floor(Math.random() * 1000000),
-        //     nameru: fil?.nameRu ?? "",
-        //     nameen: fil?.nameEn ?? "",
-        //     nameoriginal: fil?.nameOriginal ?? "",
-        //     posterurlpreview: fil?.posterUrlPreview ?? "",
-        //     descriptions: fil?.description ?? "",
-        //     ratingkinopoisk: fil?.ratingKinopoisk ?? 0,
-        //     year: fil?.year ?? 0,
-        //     type: fil?.type ?? "",
-        //     ratingagelimits: fil?.ratingAgeLimits ?? "",
-        //     filmlength: fil?.filmLength ?? 0,
-        //     countries: fil?.countries?.map(country => country?.country) ?? [],
-        //     genres: fil?.genres?.map(genre => genre?.genre) ?? []
-        // };
-
-        //}, [fil]);
-        const newFilm = async () => {
-            // try {
-            //
-            //     // console.log(films)
-            //     for (let i = 0; i < 20; i++) {
-            //         let ID = films[i].kinopoiskId;
-            //
-            //         await getFilmById(ID).then(resp => {
-            //                 setFil(resp)
-            //             }
-            //         ).catch(e => console.log(e.response.data.message))
-            //
-            //     }
-            // } catch
-            //     (error) {
-            //     console.error(error);
-            // }
-        }
         return (<>
                 <div className="filmList__sort">
                     <SearchWorlds str={str} setStr={setStr} setPages={setPages}/>
