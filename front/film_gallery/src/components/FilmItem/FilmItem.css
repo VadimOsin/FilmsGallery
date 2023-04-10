@@ -114,3 +114,29 @@
     justify-content: start;
     flex-wrap: wrap;
 }
+
+/*                 column view                   */
+
+.column__filmItem{
+    width: 100%;
+    margin-top: 2rem;
+    border-radius: 10px;
+    border: 1px black solid;
+    background: #68656ad1;
+}
+
+.column__filmItem__card{
+    display: flex;
+
+}
+.column__filmItem__card img{
+    object-fit: contain;
+    height: 25rem;
+}
+.column__filmItem__descriptions{
+    margin-left: 5rem;
+}
+
+.filmItem__descriptions__text{
+    margin: 10px 30px 0 0;
+}

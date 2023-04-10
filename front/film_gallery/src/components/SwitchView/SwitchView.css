@@ -1,0 +1,53 @@
+.toggle-control {
+    display: block;
+    position: relative;
+    padding-left: 100px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    user-select: none;
+    margin-top: 13px;
+}
+
+.toggle-control input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+
+.toggle-control input:checked ~ .control:after {
+    left: 55px;
+}
+
+.toggle-control .control {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 100px;
+    border-radius: 25px;
+    background-color: darkgray;
+    transition: background-color 0.15s ease-in;
+}
+
+.toggle-control .control:after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 25px;
+    background: white;
+    transition: left 0.15s ease-in;
+}
+
+.control__list {
+    width: 99%;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 0.8rem;
+}

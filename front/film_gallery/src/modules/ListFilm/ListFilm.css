@@ -16,3 +16,8 @@
     justify-content: center;
     margin: 1rem auto;
 }
+.column__filmList{
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}

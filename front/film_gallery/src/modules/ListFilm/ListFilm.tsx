@@ -8,6 +8,7 @@ import YearSelect from "../../components/YearSelect/YearSelect";
 import RatingSelect from "../../components/RatingSelect/RatingSelect";
 import SearchWorlds from "../../components/SecrchWorlds/SearchWorlds";
 import Spinner from "../../components/Spinner/Spinner";
+import SwitchView from "../../components/SwitchView/SwitchView";
 
 const ListFilm = () => {
         let date = new Date().getFullYear()
@@ -18,6 +19,7 @@ const ListFilm = () => {
         const [str, setStr] = useState('')
         const [totalPages, setTotalPages] = useState(5)
         const [loading, setLoading] = useState(true)
+        const [switchView, setSwitchView] = useState(false)
         useEffect(() => {
             setLoading(true)
             setTimeout(() => {
@@ -77,12 +79,13 @@ const ListFilm = () => {
                     <SearchWorlds str={str} setStr={setStr} setPages={setPages}/>
                     <YearSelect date={date} setYear={setYear} setPages={setPages}/>
                     <RatingSelect setRating={setRating} setPages={setPages}/>
+                    <SwitchView switchView={switchView} setSwitchView={setSwitchView}/>
                 </div>
                 {loading ? (
-                        <Spinner/>
+                    <Spinner/>
                 ) : (
                     <>
-                        <div className='filmList'>
+                        <div className={switchView?'column__filmList':'filmList'}>
                             {films?.map((film) => (
                                 <FilmItem
                                     key={film.id}
@@ -99,10 +102,11 @@ const ListFilm = () => {
                                     descriptions={film.descriptions}
                                     nameen={film.nameen}
                                     nameru={film.nameru}
+                                    switchView={switchView}
                                 />
                             ))}
                         </div>
-                        <Pagination active={pages} setPage={setPages} totalPages={totalPages} />
+                        <Pagination active={pages} setPage={setPages} totalPages={totalPages}/>
                     </>
                 )}
             </>
