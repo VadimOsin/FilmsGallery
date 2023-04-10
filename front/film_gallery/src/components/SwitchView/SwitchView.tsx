@@ -11,7 +11,7 @@ const SwitchView: React.FC<ISwitchView> = ({
                                            }) => {
     useEffect(() => {
         console.log(switchView)
-    }, [])
+    })
     return (
         <label className="toggle-control">
             <input type="checkbox" checked={switchView} onChange={(event) => setSwitchView(event.target.checked)}/>

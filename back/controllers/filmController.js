@@ -9,7 +9,6 @@ class filmController {
     async newFilm(req, res) {
         try {
             const {
-                id,
                 nameru,
                 nameen,
                 nameoriginal,
@@ -22,15 +21,21 @@ class filmController {
                 ratingagelimits,
                 genres,
                 countries
-            } = req.body.film
-            const newPost = await db.query(`INSERT INTO film (id, nameRu, nameEn, nameOriginal, posterUrlPreview,
-                                                              ratingKinopoisk, year, filmLength, descriptions, type,
-                                                              ratingAgeLimits, genres,
+            } = req.body
+            let fileName = ''
+            if (!posterurlpreview) {
+                const {img} = req.files
+                fileName = uuid.v4() + ".jpg"
+                img.mv(path.resolve(__dirname, '..', 'static/film', fileName))
+            }
+            const newPost = await db.query(`INSERT INTO film (nameru, nameen, nameoriginal, posterurlpreview,
+                                                              ratingkinopoisk, year, filmlength, descriptions, type,
+                                                              ratingagelimits, genres,
                                                               countries)
                                             values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,
-                                                    $11, $12,
-                                                    $13) RETURNING *`, [id, nameru, nameen, nameoriginal, posterurlpreview, ratingkinopoisk, year, filmlength, descriptions, type, ratingagelimits, genres,
-                countries])
+                                                    $11,
+                                                    $12) RETURNING *`, [nameru, nameen, nameoriginal, posterurlpreview ? posterurlpreview : fileName, ratingkinopoisk, year, filmlength, descriptions, type, ratingagelimits, JSON.parse(genres),
+                JSON.parse(countries)])
             res.json(newPost.rows[0])
         } catch (err) {
             res.status(400).json({message: "add film error" + err})

@@ -1,6 +1,4 @@
 import {$host} from "../../Login/axios";
-import {IFilm} from "../../../global/types/types";
-
 interface IGetAllFilms {
     page: number,
     limit: number,
@@ -18,7 +16,7 @@ export const getFilms = async ({page, limit, category, ratingTo, year, keyword}:
     );
     return data;
 }
-export const newFilm = async (film: any) => {
+export const updateFilm = async (film: any) => {
     const {data} = await $host.put('api/film', film)
         .catch(
             error => {
@@ -28,3 +26,12 @@ export const newFilm = async (film: any) => {
     return data
 };
 
+export const newFilm = async (film: any) => {
+    const {data} = await $host.post('api/film', film)
+        .catch(
+            error => {
+                throw new Error(error.response.data.message);
+            }
+        );
+    return data
+};

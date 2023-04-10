@@ -3,7 +3,7 @@ import {IFilm} from "../../global/types/types";
 import {getFilmById} from "../FilmById/axios/filmByIdApi";
 import {useParams} from "react-router-dom";
 import './AddorEditFilm.css'
-import {newFilm} from "../ListFilm/axios/filmsApi";
+import {newFilm, updateFilm} from "../ListFilm/axios/filmsApi";
 
 
 type QuizParams = {
@@ -33,7 +33,7 @@ const AddOrEditFilm: React.FC = () => {
                 setFilm(response)
             }).catch(error => console.log(error))
         }
-    }, [])
+    })
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const {name, value} = e.target;
         setFilm(prevFilm => ({...prevFilm, [name]: value}));
@@ -63,7 +63,6 @@ const AddOrEditFilm: React.FC = () => {
     }
     const addFilm = async () => {
         const formData = new FormData();
-        formData.append('id', film.id?.toString() ?? "0");
         formData.append('nameru', film.nameru ?? '');
         formData.append('nameen', film.nameen ? film.nameen : "");
         formData.append('nameoriginal', film.nameoriginal);
@@ -81,7 +80,16 @@ const AddOrEditFilm: React.FC = () => {
             formData.append('posterurlpreview', film.posterurlpreview);
         }
         if (id !== "0" && id !== undefined) {
-            let data = await newFilm(formData).then(response => {
+            formData.append('id', film.id?.toString() ?? "0");
+           await updateFilm(formData).then(response => {
+                console.log(response)
+            }).catch(
+                error => {
+                    console.log(error.message)
+                }
+            );
+        } else {
+           await newFilm(formData).then(response => {
                 console.log(response)
             }).catch(
                 error => {
@@ -91,6 +99,36 @@ const AddOrEditFilm: React.FC = () => {
         }
     }
 
+    const addInfo = () => {
+        setFilm({...film, genres: [...film.genres, ""]});
+    };
+
+    const removeInfo = (index: number) => {
+        const newGenres = [...film.genres];
+        newGenres.splice(index, 1);
+        setFilm({...film, genres: newGenres});
+    };
+
+    const changeInfo = (key: string, value: string, index: number) => {
+        const newGenres = [...film.genres];
+        newGenres[index] = value;
+        setFilm({...film, genres: newGenres});
+    };
+    const addCountry = () => {
+        setFilm({...film, countries: [...film.countries, ""]});
+    };
+
+    const removeCountry = (index: number) => {
+        const newCountries = [...film.countries];
+        newCountries.splice(index, 1);
+        setFilm({...film, countries: newCountries});
+    };
+
+    const changeCountry = (key: string, value: string, index: number) => {
+        const newCountries = [...film.countries];
+        newCountries[index] = value;
+        setFilm({...film, countries: newCountries});
+    };
     return (
         <div className="box">
             <form>
@@ -152,12 +190,35 @@ const AddOrEditFilm: React.FC = () => {
                     <label>FilmLength</label>
                 </div>
                 <div className="input-container">
-                    <input type="text" name="countries" onChange={handleChange} value={film.countries ?? ""}/>
-                    <label>Countries</label>
+                    <div className="input-container__info">
+                        <label>Countries</label>
+                        <div className="btn__add__items" onClick={() => addCountry()}>Add</div>
+                    </div>
+                    <div className="input-container__info__list">
+                        {film.countries.map((country, index) => (
+                            <div className="input-container input-container__item" key={index}>
+                                <input type="text" value={country}
+                                       onChange={(event) => changeCountry("countries", event.target.value, index)}/>
+                                <div className="btn__remove__items" onClick={() => removeCountry(index)}>Remove</div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
+
                 <div className="input-container">
-                    <input type="text" name="genres" onChange={handleChange} value={film.genres ?? ""}/>
-                    <label>Genres</label>
+                    <div className="input-container__info">
+                        <label>Genres</label>
+                        <div className="btn__add__items" onClick={() => addInfo()}>Add</div>
+                    </div>
+                    <div className="input-container__info__list">
+                        {film.genres.map((genre, index) => (
+                            <div className="input-container input-container__item" key={index}>
+                                <input type="text" value={genre}
+                                       onChange={(event) => changeInfo("genres", event.target.value, index)}/>
+                                <div className="btn__remove__items" onClick={() => removeInfo(index)}>Remove</div>
+                            </div>
+                        ))}</div>
+
                 </div>
                 <div className="addFilm__btn">
                     <button type="button" className="btn" onClick={addFilm}>submit</button>

@@ -63,3 +63,37 @@
     display: flex;
     justify-content: space-between;
 }
+
+.input-container__info{
+    display: flex;
+    justify-content: space-around;
+    color: white;
+}
+.btn__add__items{
+    color: #fff;
+    background-color: #70c757;
+    outline: none;
+    border: 0;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.input-container__info__list{
+    display: flex;
+    flex-wrap: wrap;
+}
+.btn__remove__items{
+    color: #fff;
+    background-color: #e31d1d;
+    outline: none;
+    border: 0;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.input-container__item{
+    display: flex;
+}
