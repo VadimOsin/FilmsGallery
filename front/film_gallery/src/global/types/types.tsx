@@ -15,7 +15,7 @@ export interface IComment {
 
 export interface IListFilm {
     id: number;
-    comments_id: number;
+    comments_id: string[];
 }
 
 export interface IStaff {
