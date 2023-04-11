@@ -11,7 +11,8 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
-app.use(express.static(path.resolve(__dirname, `static/${'user'||'film'}`)))
+app.use(express.static(path.resolve(__dirname, 'static/user')));
+app.use(express.static(path.resolve(__dirname, 'static/film')));
 app.use(fileUpload({}))
 app.use('/api', router)
 app.use(errorHandler)

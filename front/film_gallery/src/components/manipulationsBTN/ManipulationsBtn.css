@@ -1,0 +1,29 @@
+.filmItem__manipulations {
+    position: revert;
+    display: flex;
+    justify-content: end;
+}
+
+.manipulations__btn:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
+.manipulations__btn {
+    width: max-content;
+    padding: 5px;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.filmItem__add {
+    background-color: green;
+}
+
+.filmItem__edit {
+    background-color: yellow;
+}
+
+.filmItem__delete {
+    background-color: red;
+}

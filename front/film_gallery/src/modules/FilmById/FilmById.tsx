@@ -1,8 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import './FilmById.css'
 import {getFilmById} from "./axios/filmByIdApi";
 import {IFilm} from "../../global/types/types";
+import ManipulationsBtn from "../../components/manipulationsBTN/ManipulationsBtn";
+import {UserContext} from "../Auth/UserContext/UserContext";
 
 type QuizParams = {
     id: string;
@@ -12,6 +14,7 @@ const FilmById = () => {
     const [film, setFilm] = useState<IFilm>()
     const [checkedValue, setCheckedValue] = useState<Number>(0);
     const rating = [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10];
+    const user = useContext(UserContext);
     useEffect(() => {
         if (id) {
             getFilmById(id).then(response => {
@@ -25,6 +28,7 @@ const FilmById = () => {
     return (
         <div className="movie-card">
             <div className="container">
+                {user.role === 'ADMIN' ? <ManipulationsBtn id={parseInt(id ?? "")}/> : ""}
                 <img
                     src={film?.posterurlpreview.startsWith('http') ? film?.posterurlpreview : `${process.env.REACT_APP_API_URL}${film?.posterurlpreview}`}
                     alt="cover"

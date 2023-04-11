@@ -20,6 +20,7 @@ const ListFilm = () => {
         const [totalPages, setTotalPages] = useState(5)
         const [loading, setLoading] = useState(true)
         const [switchView, setSwitchView] = useState(false)
+    const [deleted, setDeleted] = useState(false)
         useEffect(() => {
             setLoading(true)
             setTimeout(() => {
@@ -35,7 +36,7 @@ const ListFilm = () => {
                     setTotalPages(response.totalPages)
                 }).finally(() => setLoading(false))
             }, 1000)
-        }, [year, rating, pages, str])
+        }, [year, rating, pages, str,deleted])
 
         return (<>
                 <div className="filmList__sort">
@@ -66,6 +67,7 @@ const ListFilm = () => {
                                     nameen={film.nameen}
                                     nameru={film.nameru}
                                     switchView={switchView}
+                                    setDeleted={setDeleted}
                                 />
                             ))}
                         </div>

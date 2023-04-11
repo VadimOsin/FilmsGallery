@@ -3,9 +3,11 @@ import './FilmItem.css'
 import {useNavigate} from "react-router";
 import {UserContext} from "../../modules/Auth/UserContext/UserContext";
 import {IFilm} from "../../global/types/types";
+import ManipulationsBtn from "../manipulationsBTN/ManipulationsBtn";
 
 interface IFilmWithSwitch extends IFilm {
-    switchView: boolean
+    switchView: boolean,
+    setDeleted: (page: boolean) => void
 }
 
 const FilmItem: React.FC<IFilmWithSwitch> = ({
@@ -22,19 +24,19 @@ const FilmItem: React.FC<IFilmWithSwitch> = ({
                                                  descriptions,
                                                  type,
                                                  filmlength,
-                                                 switchView
+                                                 switchView,
+                                                 setDeleted
                                              }) => {
     const user = useContext(UserContext);
     let navigate = useNavigate()
+
     return (<>{
             switchView ? <div className="column__filmItem">
-                    {user.role === 'ADMIN' ? <div className="filmItem__manipulations">
-                        <div className="filmItem__add manipulations__btn">Add</div>
-                        <div className="filmItem__edit manipulations__btn">Edit</div>
-                        <div className="filmItem__delete manipulations__btn">Delete</div>
-                    </div> : ""}
+                    {user.role === 'ADMIN' ? <ManipulationsBtn id={id}/> : ""}
                     <div className="column__filmItem__card" onClick={() => navigate(`films/${id}`)}>
-                        <img src={posterurlpreview} alt='user'/>
+                        <img
+                            src={posterurlpreview.startsWith('http') ? posterurlpreview : `${process.env.REACT_APP_API_URL}${posterurlpreview}`}
+                            alt='user'/>
                         <div className="column__filmItem__descriptions">
                             <h1>{nameoriginal ? nameoriginal : nameru ? nameru : nameen}</h1>
                             <div className="column__filmItem__list">
@@ -53,13 +55,11 @@ const FilmItem: React.FC<IFilmWithSwitch> = ({
                 </div>
                 :
                 <div className="filmItem">
-                    {user.role === 'ADMIN' ? <div className="filmItem__manipulations">
-                        <div className="filmItem__add manipulations__btn">Add</div>
-                        <div className="filmItem__edit manipulations__btn">Edit</div>
-                        <div className="filmItem__delete manipulations__btn">Delete</div>
-                    </div> : ""}
+                    {user.role === 'ADMIN' ? <ManipulationsBtn id={id}/> : ""}
                     <div className="filmItem__card" onClick={() => navigate(`films/${id}`)}>
-                        <img src={posterurlpreview} alt='user'/>
+                        <img
+                            src={posterurlpreview.startsWith('http') ? posterurlpreview : `${process.env.REACT_APP_API_URL}${posterurlpreview}`}
+                            alt='user'/>
                         <div className="filmItem__descriptions">
                             <h1>{nameoriginal ? nameoriginal : nameru ? nameru : nameen}</h1>
                             <div className="filmItem__list">

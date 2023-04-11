@@ -35,3 +35,13 @@ export const newFilm = async (film: any) => {
         );
     return data
 };
+
+export const deleteFilm = async (id: number) => {
+    const {data} = await $host.delete(`api/film?id=${id}`)
+        .catch(
+            error => {
+                throw new Error(error.response.data.message);
+            }
+        );
+    return data
+};

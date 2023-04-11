@@ -82,7 +82,7 @@ const AddOrEditFilm: React.FC = () => {
         if (id !== "0" && id !== undefined) {
             formData.append('id', film.id?.toString() ?? "0");
            await updateFilm(formData).then(response => {
-                console.log(response)
+
             }).catch(
                 error => {
                     console.log(error.message)

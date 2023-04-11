@@ -15,6 +15,7 @@
     transition: all .5s cubic-bezier(.8, .5, .2, 1.4);
     overflow: hidden;
     position: relative;
+    min-width: 14rem;
 }
 
 .filmItem__card img {
@@ -70,36 +71,6 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-}
-
-.filmItem__manipulations {
-    position: revert;
-    display: flex;
-    justify-content: end;
-}
-
-.manipulations__btn:hover {
-    cursor: pointer;
-    scale: 1.1;
-}
-
-.manipulations__btn {
-    width: max-content;
-    padding: 5px;
-    margin-right: 5px;
-    border-radius: 5px;
-}
-
-.filmItem__add {
-    background-color: green;
-}
-
-.filmItem__edit {
-    background-color: yellow;
-}
-
-.filmItem__delete {
-    background-color: red;
 }
 
 .filmItem__list--item {
