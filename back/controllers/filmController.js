@@ -36,8 +36,6 @@ class filmController {
                                                     $11,
                                                     $12) RETURNING *`, [nameru, nameen, nameoriginal, posterurlpreview ? posterurlpreview : fileName, ratingkinopoisk, year, filmlength, descriptions, type, ratingagelimits, JSON.parse(genres),
                 JSON.parse(countries)])
-            await db.query(`INSERT INTO "listComments" (id)
-                            values ($1) RETURNING *`, [newFilm.rows[0].id])
 
             res.json(newFilm.rows[0])
         } catch (err) {
@@ -186,9 +184,6 @@ class filmController {
             const id = req.query.id
             await db.query(`DELETE
                             FROM film
-                            WHERE id = $1`, [id])
-            await db.query(`DELETE
-                            FROM "listComments"
                             WHERE id = $1`, [id])
             res.json({message: 'Film deleted'})
         } catch (err) {

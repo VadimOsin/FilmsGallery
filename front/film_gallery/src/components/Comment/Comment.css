@@ -40,18 +40,19 @@
     text-shadow: -2px 2px #fff, -1.5px 1.5px #fff, -1px 1px #fff, -0.5px 0.5px #fff;
 }
 
-.quote-title {
-    margin-block-end: 1rem;
-}
 
-.quote-text {
-    margin-block-start: 1rem;
-    text-indent: 2ch;
-}
 
 .quote-author {
-    text-align: right;
-    margin-block-start: 1rem;
-    margin-block-end: 0;
-    font-style: italic;
+text-align: right;
+margin-block-start: 1rem;
+font-style: italic;
+}
+.quote-author img{
+border-radius: 50%;
+}
+
+.deleteComment{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
 }

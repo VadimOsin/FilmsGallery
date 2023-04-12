@@ -1,0 +1,61 @@
+.comments__input{
+    border:0;
+    border-bottom:1px solid #555;
+    background:transparent;
+    width:90%;
+    padding:8px 0 5px 0;
+    font-size:16px;
+    color: black;
+    margin: 0 auto;
+}
+
+.comments__input:focus{
+    border:none;
+    outline:none;
+    border-bottom:1px solid #e74c3c;
+}
+.addComments{
+    color: black;
+}
+
+.quote-title label,
+.quote-text label{
+    position:absolute;
+    top:-10px;
+    left:0;
+    font-size:16px;
+    color: #1f1f1f;
+    transition: all 0.5s ease-in-out;
+}
+.quote-title,
+.quote-text
+{
+    position:relative;
+}
+.quote-title{
+    margin-left: 7rem;
+}
+.quote-text{
+    margin-left: 3rem;
+}
+.addComments__btn{
+    display: flex;
+    justify-content: space-around;
+}
+.addComments__btn button{
+    color: #fff;
+    outline: none;
+    border: 0;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    margin-top: 50px;
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+}
+.addComments__btn__add{
+    background-color: #4CAF50;
+}
+.addComments__btn__reset{
+    background-color: #e74c3c;
+}

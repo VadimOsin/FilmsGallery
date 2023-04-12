@@ -1,5 +1,6 @@
 import  { createContext } from 'react';
 export interface IUser {
+    id:string,
     email: string;
 
     password:string;
@@ -14,11 +15,13 @@ export interface IUser {
     isAuth: boolean;
 }
 export interface IUserContextType extends IUser {
-    signIn: (email: string, password: string, role: string, name: string, surname: string, img: string) => void;
+    signIn: (id:string,email: string, password: string, role: string, name: string, surname: string, img: string) => void;
     logOut: () => void;
 }
 
 export const UserContext = createContext<IUserContextType>({
+    id:'',
+
     email: '',
 
     password:'',

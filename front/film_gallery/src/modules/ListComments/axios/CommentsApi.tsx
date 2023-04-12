@@ -10,7 +10,7 @@ export const getAllComments = async () => {
     return data
 };
 
-export const getOneComments = async (id: number) => {
+export const getOneComments = async (id: string) => {
     const {data} = await $authHost.get(`api/comments?id=${id}`)
         .catch(
             error => {
@@ -30,8 +30,8 @@ export const deleteComments = async (id: number) => {
     return data
 };
 
-export const newComments = async (title:string,text:string,likes:number,user_id:number) => {
-    const {data} = await $authHost.post(`api/comments/`,{title,text,likes,user_id})
+export const newComments = async (title:string,text:string,likes:number,user_id:string,film_id:string) => {
+    const {data} = await $authHost.post(`api/comments/`,{title,text,likes,user_id,film_id})
         .catch(
             error => {
                 throw new Error(error.response.data.message);
@@ -40,8 +40,8 @@ export const newComments = async (title:string,text:string,likes:number,user_id:
     return data
 };
 
-export const updateComments = async (id:number,title:string,text:string,likes:number,user_id:number) => {
-    const {data} = await $authHost.post(`api/comments/`,{id,title,text,likes,user_id})
+export const updateComments = async (id:number,title:string,text:string,likes:number,user_id:string,film_id:string) => {
+    const {data} = await $authHost.post(`api/comments/`,{id,title,text,likes,user_id,film_id})
         .catch(
             error => {
                 throw new Error(error.response.data.message);
@@ -49,3 +49,34 @@ export const updateComments = async (id:number,title:string,text:string,likes:nu
         );
     return data
 };
+
+export const getAllCommentsByUserId = async (id: number) => {
+    const {data} = await $authHost.get(`api/comments/userid?id=${id}`)
+        .catch(
+            error => {
+                throw new Error(error.response.data.message);
+            }
+        );
+    return data
+};
+
+export const getAllCommentsByFilmId = async (id: number) => {
+    const {data} = await $authHost.get(`api/comments/filmid?id=${id}`)
+        .catch(
+            error => {
+                throw new Error(error.response.data.message);
+            }
+        );
+    return data
+};
+
+export const getUserCommentInfo = async (id: string) => {
+    const {data} = await $authHost.get(`api/user?id=${id}`)
+        .catch(
+            error => {
+                throw new Error(error.response.data.message);
+            }
+        );
+    return data
+};
+

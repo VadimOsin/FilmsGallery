@@ -69,6 +69,19 @@ class UserController {
         const token = generateJwt(req.user.id, req.user.email, req.user.role,req.user.name,req.user.surname,req.user.img)
         return res.json({token})
     }
+
+    async userInfo(req, res) {
+        try {
+            const id = req.query.id
+            const user = await db.query(`SELECT *
+                                             FROM "usermeta"
+                                             where user_meta_id = $1`, [id])
+            res.json(user.rows[0])
+        } catch (err) {
+            console.error(err)
+            res.status(500).json({message: 'Failed get User By Id comment' + err})
+        }
+    }
 }
 
 module.exports = new UserController()

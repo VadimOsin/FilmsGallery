@@ -11,6 +11,8 @@ export interface IComment {
     text: string;
     likes: number;
     user_id: number;
+
+    film_id: number;
 }
 
 export interface IListFilm {

@@ -9,6 +9,8 @@ import Spinner from "../../components/Spinner/Spinner";
 const AppRouter: FC = () => {
 
     const [user, setUser] = useState<IUser>({
+        id: '',
+
         email: '',
 
         password: '',
@@ -24,8 +26,10 @@ const AppRouter: FC = () => {
         isAuth: false
     });
 
-    const signIn = (email: string, password: string, role: string, name: string, surname: string, img: string) => {
+    const signIn = (id: string, email: string, password: string, role: string, name: string, surname: string, img: string) => {
         setUser({
+            id: id,
+
             email: email,
 
             password: password,
@@ -44,6 +48,7 @@ const AppRouter: FC = () => {
 
     const logOut = () => {
         setUser({
+            id: '',
             email: '',
 
             password: '',
@@ -66,7 +71,7 @@ const AppRouter: FC = () => {
         setTimeout(() => {
             check().then((response) => {
                 let data = response as IUser
-                signIn(data.email, data.password, data.role, data.name, data.surname, data.img)
+                signIn(data.id, data.email, data.password, data.role, data.name, data.surname, data.img)
             }).finally(() => setLoading(false))
         }, 1000)
     }, [])
@@ -74,7 +79,6 @@ const AppRouter: FC = () => {
     if (loading) {
         return <Spinner/>
     }
-
     return (
         <UserContext.Provider value={{...user, signIn, logOut}}>
             <Navbar/>

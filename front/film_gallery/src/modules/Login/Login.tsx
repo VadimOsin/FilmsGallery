@@ -96,7 +96,7 @@ const Login = () => {
                         });
                     }
                 ) as IUser;
-            signIn(data.email, data.password, data.role, data.name, data.surname, data.img)
+            signIn(data.id,data.email, data.password, data.role, data.name, data.surname, data.img)
             setModal({
                 title: 'Вход выполнен!',
                 text: "Подождите вас перенаправит на главную страницу",
@@ -120,7 +120,6 @@ const Login = () => {
             if (file) {
                 formData.append('img', file);
             }
-            console.log(formData)
             data = await registration(formData).catch(
                 error => {
                     setModal({
@@ -130,7 +129,7 @@ const Login = () => {
                     });
                 }
             ) as IUser;
-            signIn(data.email, data.password, data.role, data.name, data.surname, data.img)
+            signIn(data.id,data.email, data.password, data.role, data.name, data.surname, data.img)
             setModal({
                 title: 'Регистрация прошла успешно!',
                 text: "Подождите вас перенаправит на главную страницу",
