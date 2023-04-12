@@ -56,3 +56,9 @@ border-radius: 50%;
     top: 1rem;
     right: 1rem;
 }
+.editComment{
+    position: absolute;
+    top: 1rem;
+    right: 6rem;
+    background-color: yellow;
+}

@@ -16,6 +16,7 @@
 }
 .addComments{
     color: black;
+    top: 15rem;
 }
 
 .quote-title label,
@@ -58,4 +59,10 @@
 }
 .addComments__btn__reset{
     background-color: #e74c3c;
+}
+.addComments__close-button{
+    left: 34rem;
+    position: relative;
+    border-radius: 50%;
+    cursor: pointer;
 }
