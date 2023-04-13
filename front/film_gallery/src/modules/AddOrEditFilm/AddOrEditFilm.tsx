@@ -33,7 +33,7 @@ const AddOrEditFilm: React.FC = () => {
                 setFilm(response)
             }).catch(error => console.log(error))
         }
-    })
+    },[])
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const {name, value} = e.target;
         setFilm(prevFilm => ({...prevFilm, [name]: value}));

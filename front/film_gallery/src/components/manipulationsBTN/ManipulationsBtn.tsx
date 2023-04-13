@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './ManipulationsBtn.css'
 import {useNavigate} from "react-router";
-import {FILMS_ROUTE} from "../../modules/Auth/utils/consts";
+import {ADMIN_ROUTE, FILMS_ROUTE} from "../../modules/Auth/utils/consts";
 import {deleteFilm} from "../../modules/ListFilm/axios/filmsApi";
 
 interface IManipulationsBtn {
@@ -27,8 +27,8 @@ const ManipulationsBtn: React.FC<IManipulationsBtn> = ({id}) => {
     }
     return (
         <div className="filmItem__manipulations">
-            <div className="filmItem__add manipulations__btn" onClick={() => navigate(`films/0`)}>Add</div>
-            <div className="filmItem__edit manipulations__btn" onClick={() => navigate(`films/${id}`)}>Edit
+            <div className="filmItem__add manipulations__btn" onClick={() => navigate(`${ADMIN_ROUTE}/0`)}>Add</div>
+            <div className="filmItem__edit manipulations__btn" onClick={() => navigate(`${ADMIN_ROUTE}/${id}`)}>Edit
             </div>
             <div className="filmItem__delete manipulations__btn" onClick={clickDeleteFilm}>Delete</div>
         </div>

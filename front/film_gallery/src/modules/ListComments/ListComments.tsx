@@ -14,8 +14,8 @@ const ListComments = () => {
     const {id} = useParams<QuizParams>();
     const [comments, setComments] = useState<IComment[]>([])
     const user = useContext(UserContext)
-    const [openModal,setOpenModal]=useState(false)
-    const [isEditing,setIsEditing]=useState(0)
+    const [openModal, setOpenModal] = useState(false)
+    const [isEditing, setIsEditing] = useState(0)
     useEffect(() => {
         if (id) {
             getAllCommentsByFilmId(parseInt(id)).then(res =>
@@ -24,26 +24,28 @@ const ListComments = () => {
         }
     }, [id]);
 
-    const deleteComment = async (number:number) => {
+    const deleteComment = async (number: number) => {
         setComments(comments.filter(i => i.id !== number))
-        await deleteComments(number).then(res=>console.log(res)).catch(error=>console.log(error.message))
+        await deleteComments(number).then(res => console.log(res)).catch(error => console.log(error.message))
     }
 
-    const editComment = async (number:number) => {
-     setIsEditing(number)
+    const editComment = async (number: number) => {
+        setIsEditing(number)
         setOpenModal(true)
     }
 
     return (
         <>
             {user.isAuth ? (<>
-                    <AddComments comment={comments} setComment={setComments} isOpen={openModal} onClose={()=>setOpenModal(!openModal)} isEditing={isEditing}/>
+                    <AddComments comment={comments} setComment={setComments} isOpen={openModal}
+                                 onClose={() => setOpenModal(!openModal)} isEditing={isEditing}/>
                     <div>
                         <div className="addNewComment"
-                                onClick={(event) => setOpenModal(true)}>Add new comment
+                             onClick={(event) => setOpenModal(true)}>Add new comment
                         </div>
                         {comments?.reverse().map(i =>
-                            <Comment key={i.id} idComment={i.id} title={i.title} text={i.text} user_id={i.user_id} deleteComment={deleteComment} editComment={editComment}/>
+                            <Comment key={i.id} idComment={i.id} title={i.title} text={i.text} user_id={i.user_id}
+                                     deleteComment={deleteComment} editComment={editComment}/>
                         )}
                     </div>
                 </>

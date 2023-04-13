@@ -80,6 +80,7 @@ const AddComments: React.FC<IAddComment> = ({comment, setComment, isOpen, onClos
                     console.log(error);
                 }
                 resetComments()
+                onClose()
             }
         }
     }
