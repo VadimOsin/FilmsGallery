@@ -141,5 +141,4 @@ const AddComments: React.FC<IAddComment> = ({comment, setComment, isOpen, onClos
         </div>
     ) : null
 };
-
 export default AddComments;

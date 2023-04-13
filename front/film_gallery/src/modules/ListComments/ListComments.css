@@ -1,0 +1,12 @@
+.addNewComment{
+    width: 40%;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px 0;
+    background: #2de32d;
+    cursor: pointer;
+}
+.addNewComment:hover{
+    scale: 1.1;
+}

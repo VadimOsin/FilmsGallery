@@ -14,7 +14,7 @@ const ListComments = () => {
     const {id} = useParams<QuizParams>();
     const [comments, setComments] = useState<IComment[]>([])
     const user = useContext(UserContext)
-    const [openModal,setOpenModal]=useState(true)
+    const [openModal,setOpenModal]=useState(false)
     const [isEditing,setIsEditing]=useState(0)
     useEffect(() => {
         if (id) {
@@ -39,6 +39,9 @@ const ListComments = () => {
             {user.isAuth ? (<>
                     <AddComments comment={comments} setComment={setComments} isOpen={openModal} onClose={()=>setOpenModal(!openModal)} isEditing={isEditing}/>
                     <div>
+                        <div className="addNewComment"
+                                onClick={(event) => setOpenModal(true)}>Add new comment
+                        </div>
                         {comments?.reverse().map(i =>
                             <Comment key={i.id} idComment={i.id} title={i.title} text={i.text} user_id={i.user_id} deleteComment={deleteComment} editComment={editComment}/>
                         )}
